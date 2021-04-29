@@ -2,7 +2,7 @@
   "name": "sourbit.locus",
   "version": "0.1.0",
   "displayName": "Locus Pathing",
-  "description": "",
+  "description": "Simple pathing tool for square grids (A*) and directed graphs.",
   "unity": "2019.1",
   "keywords": [
     "a*",

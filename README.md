@@ -1,3 +1,3 @@
 # Locus Pathing
 
-Simple square grid (A*) and directed graph pathing.
+Simple pathing tool for square grids (A*) and directed graphs.
