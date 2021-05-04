@@ -185,7 +185,7 @@ namespace Sourbit.Locus
             return path;
         }
 
-        public int[] CreateGrid(int width, int height, int[] costs)
+        public int[] CreateGrid(int width, int height, float[] costs)
         {
             if (costs.Length != width * height)
             {
