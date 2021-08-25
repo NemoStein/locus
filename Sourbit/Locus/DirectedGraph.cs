@@ -20,7 +20,7 @@ namespace Sourbit.Locus
 
         public int Add()
         {
-            var node = ++this.nodes;
+            var node = this.nodes++;
             Connections[node] = new Dictionary<int, float>();
 
             return node;
