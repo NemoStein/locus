@@ -202,26 +202,30 @@ namespace Sourbit.Locus
                     var node = Add();
                     nodes[index] = node;
 
-                    var neighbors = new List<int>();
-                    if (x - 1 >= 0) neighbors.Add((x - 1) + y * width);
-                    if (y - 1 >= 0) neighbors.Add(x + (y - 1) * width);
+                    var neighbors = new List<(int, bool)>();
+                    if (x - 1 >= 0) neighbors.Add(((x - 1) + y * width, false));
+                    if (y - 1 >= 0) neighbors.Add((x + (y - 1) * width, false));
 
                     if (connectDiagonals)
                     {
                         if (x - 1 >= 0 && y - 1 >= 0)
                         {
-                            neighbors.Add((x - 1) + (y - 1) * width);
+                            neighbors.Add(((x - 1) + (y - 1) * width, true));
                         }
                         if (x - 1 >= 0 && y + 1 < height)
                         {
-                            neighbors.Add((x - 1) + (y + 1) * width);
+                            neighbors.Add(((x - 1) + (y + 1) * width, true));
                         }
                     }
 
-                    foreach (var neighbor in neighbors)
+                    foreach (var tuple in neighbors)
                     {
-                        Connect(node, nodes[neighbor], costs[neighbor]);
-                        Connect(nodes[neighbor], node, costs[index]);
+                        var neighbor = tuple.Item1;
+                        var diagonal = tuple.Item2;
+                        var diagonalScale = diagonal ? 1.414213f : 1;
+
+                        Connect(node, nodes[neighbor], costs[neighbor] * diagonalScale);
+                        Connect(nodes[neighbor], node, costs[index] * diagonalScale);
                     }
                 }
             }
