@@ -194,9 +194,9 @@ namespace Sourbit.Locus
 
             var nodes = new int[width * height];
 
-            for (var y = 0; y < height; ++y)
+            for (var x = 0; x < width; ++x)
             {
-                for (var x = 0; x < width; ++x)
+                for (var y = 0; y < height; ++y)
                 {
                     var index = x + y * width;
                     var node = Add();
