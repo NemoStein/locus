@@ -185,7 +185,7 @@ namespace Sourbit.Locus
             return path;
         }
 
-        public int[] CreateGrid(int width, int height, float[] costs)
+        public int[] CreateGrid(int width, int height, float[] costs, bool connectDiagonals = false)
         {
             if (costs.Length != width * height)
             {
@@ -205,6 +205,18 @@ namespace Sourbit.Locus
                     var neighbors = new List<int>();
                     if (x - 1 >= 0) neighbors.Add((x - 1) + y * width);
                     if (y - 1 >= 0) neighbors.Add(x + (y - 1) * width);
+
+                    if (connectDiagonals)
+                    {
+                        if (x - 1 >= 0 && y - 1 >= 0)
+                        {
+                            neighbors.Add((x - 1) + (y - 1) * width);
+                        }
+                        if (x - 1 >= 0 && y + 1 < height)
+                        {
+                            neighbors.Add((x - 1) + (y + 1) * width);
+                        }
+                    }
 
                     foreach (var neighbor in neighbors)
                     {
