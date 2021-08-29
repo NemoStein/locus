@@ -5,22 +5,22 @@ namespace Sourbit.Locus
 {
     public class DirectedGraph
     {
-        public Dictionary<int, Dictionary<int, float>> Connections { get; private set; }
-
-        int nodes;
-        readonly Dictionary<int, bool> disabled;
+        public int Nodes { get; private set; }
+        
+        readonly Dictionary<int, Dictionary<int, float>> Connections;
+        readonly Dictionary<int, bool> Disabled;
 
         public DirectedGraph()
         {
-            nodes = 0;
-            disabled = new Dictionary<int, bool>();
+            Nodes = 0;
 
+            Disabled = new Dictionary<int, bool>();
             Connections = new Dictionary<int, Dictionary<int, float>>();
         }
 
         public int Add()
         {
-            var node = this.nodes++;
+            var node = this.Nodes++;
             Connections[node] = new Dictionary<int, float>();
 
             return node;
@@ -64,12 +64,12 @@ namespace Sourbit.Locus
 
         public void Enable(int node)
         {
-            disabled[node] = false;
+            Disabled[node] = false;
         }
 
         public void Disable(int node)
         {
-            disabled[node] = true;
+            Disabled[node] = true;
         }
 
         public List<int> Find(int origin, int target)
@@ -131,7 +131,7 @@ namespace Sourbit.Locus
                     }
 
                     // If neighbor is a block -> Skip
-                    if (disabled.ContainsKey(neighbor) && disabled[neighbor])
+                    if (Disabled.ContainsKey(neighbor) && Disabled[neighbor])
                     {
                         continue;
                     }
