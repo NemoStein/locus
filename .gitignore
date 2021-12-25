@@ -1,0 +1,6 @@
+# Ignore dotfiles, except git related
+.*
+!.git*
+
+# Unity will generate meta files on demand
+*.meta
